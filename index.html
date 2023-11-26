@@ -69,50 +69,33 @@
 </html> -->
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <!--MBtiles -->
-  <script src="https://unpkg.com/sql.js@0.3.2/js/sql.js"></script>
-  <script src="https://unpkg.com/Leaflet.TileLayer.MBTiles@1.0.0/Leaflet.TileLayer.MBTiles.js"></script>
-
-  <style>
-    html, body {
-      height: 100%;
-      padding: 0;
-      margin: 0;
-    }
-    #map {
-      /* configure the size of the map */
-      width: 50%;
-      height: 50%;
-    }
-  </style>
-  
-</head>
-<body>
-  <h1>Mapa</h1>
-  <div id="map"></div>
-  <script>
-    var map = new L.Map("map").setView([-84.0749,10.1564],8);
-    // var mapa = L.tileLayer.mbTiles('mini.mbtiles').addTo(map);
-  
-    // var mb = L.tileLayer.mbTiles('./Proyecto3.mbtiles', {
-    //   minZoom: 0,
-    //   maxZoom: 16
-    // }).addTo(map);
-
-    var mapa = L.tileLayer.mbTiles('nuevo/{z}/{x}/{y}', {
-        minZoom: 8, maxZoom: 14, tms: false
-        }).addTo(map);
-        map.setView([-84.0749,10.1564], 8);
-  
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Display a map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+      #map {position: absolute; top: 0; right: 0; bottom: 0; left: 0;}
+    </style>
+  </head>
+  <body>
+    <div id="map">
+      <a href="https://www.maptiler.com" style="position:absolute;left:10px;bottom:10px;z-index:999;"><img src="https://api.maptiler.com/resources/logo.svg" alt="MapTiler logo"></a>
+    </div>
+    <p><a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a></p>
+    <script>
+      const key = 'qZpSFmV8xdBQBMk250hL';
+      const map = L.map('map').setView([49.2125578, 16.62662018], 14); //starting position
+      L.tileLayer(`https://api.maptiler.com/tiles/f73000a0-36d2-4d46-b99d-f38e74cdc07b/{z}/{x}/{y}.png?key=${key}`,{ //style URL
+        // tileSize: 512,
+        zoomOffset: -1,
+        maxZoom: 14,
+        minZoom: 8,
+        attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\u0026copy; MapTiler\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
+        crossOrigin: true
+      }).addTo(map);
     </script>
-  <h2>ayuda</h2>
-</body>
-</html> 
-<!-- bounds: [[-85.957,8.0348],[-82.5458,11.2296]] -->
+  </body>
+</html>
+
