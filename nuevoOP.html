@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OpenLayers Map</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://openlayers.org/en/v6.13.0/css/ol.css" type="text/css">
+  <style>
+    #map {
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script src="https://openlayers.org/en/v6.13.0/build/ol.js"></script>
+  <script>
+    // Define la fuente del mapa desde el directorio de teselas
+    var source = new ol.source.XYZ({
+      url: 'nuevo/{z}/{x}/{y}.png'
+    });
+
+    // Crea una capa de mapa usando la fuente definida
+    var layer = new ol.layer.Tile({
+      source: source
+    });
+
+    // Crea el mapa y agrega la capa
+    var map = new ol.Map({
+      target: 'map',
+      layers: [layer],
+      view: new ol.View({
+        center: [-84.0749,10.1564],
+        zoom: 8
+      })
+    });
+  </script>
+</body>
+</html>
